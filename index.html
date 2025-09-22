@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Format Jurnal Bimbingan Individu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1><i class="fas fa-clipboard-list"></i> Format Jurnal Bimbingan Individu</h1>
+                    <p class="subtitle">Sistem Digital untuk Mencatat Proses Bimbingan Siswa</p>
+                </div>
+                <div class="header-actions">
+                    <button id="historyBtn" class="btn btn-outline">
+                        <i class="fas fa-history"></i> Riwayat Bimbingan
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <form id="jurnalForm" class="jurnal-form">
+            <!-- Identitas Siswa -->
+            <section class="form-section">
+                <h2><i class="fas fa-user"></i> Identitas Siswa</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nama">Nama Siswa</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" id="kelas" name="kelas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bidangFokus">Bidang Fokus</label>
+                        <select id="bidangFokus" name="bidangFokus" required>
+                            <option value="">Pilih Bidang Fokus</option>
+                            <option value="akademik">Akademik</option>
+                            <option value="karir">Karir</option>
+                            <option value="pribadi">Pribadi</option>
+                            <option value="sosial">Sosial</option>
+                            <option value="spiritual">Spiritual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="namaGuru">Nama Guru Wali</label>
+                        <input type="text" id="namaGuru" name="namaGuru" required placeholder="Masukkan nama guru wali kelas">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Isi Bimbingan -->
+            <section class="form-section">
+                <h2><i class="fas fa-edit"></i> Isi Bimbingan</h2>
+                
+                <div class="form-group">
+                    <label for="permasalahan">1. Permasalahan / Kebutuhan Siswa</label>
+                    <textarea id="permasalahan" name="permasalahan" rows="4" placeholder="Jelaskan permasalahan atau kebutuhan yang dialami siswa..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tujuan">2. Tujuan Bimbingan</label>
+                    <textarea id="tujuan" name="tujuan" rows="4" placeholder="Tuliskan tujuan yang ingin dicapai melalui bimbingan ini..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="materi">3. Materi / Kegiatan Bimbingan</label>
+                    <textarea id="materi" name="materi" rows="4" placeholder="Deskripsikan materi atau kegiatan yang dilakukan dalam bimbingan..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="hasil">4. Hasil / Tindak Lanjut</label>
+                    <textarea id="hasil" name="hasil" rows="4" placeholder="Jelaskan hasil yang dicapai dan rencana tindak lanjut..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="catatanGuru">5. Catatan Guru Wali</label>
+                    <textarea id="catatanGuru" name="catatanGuru" rows="4" placeholder="Catatan khusus dari guru wali kelas..." required></textarea>
+                </div>
+
+                <div class="signature-section">
+                    <h3><i class="fas fa-signature"></i> Tanda Tangan</h3>
+                    <div class="signature-grid">
+                        <div class="signature-group">
+                            <label for="ttdSiswa" id="labelTtdSiswa">Tanda Tangan Siswa</label>
+                            <div class="signature-pad">
+                                <canvas id="ttdSiswa" width="300" height="150"></canvas>
+                                <div class="signature-name" id="signatureNameSiswa">Nama Siswa</div>
+                                <button type="button" class="clear-signature" data-target="ttdSiswa">
+                                    <i class="fas fa-eraser"></i> Hapus
+                                </button>
+                            </div>
+                        </div>
+                        <div class="signature-group">
+                            <label for="ttdGuru" id="labelTtdGuru">Tanda Tangan Guru</label>
+                            <div class="signature-pad">
+                                <canvas id="ttdGuru" width="300" height="150"></canvas>
+                                <div class="signature-name" id="signatureNameGuru">Nama Guru Wali</div>
+                                <button type="button" class="clear-signature" data-target="ttdGuru">
+                                    <i class="fas fa-eraser"></i> Hapus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="button" id="previewBtn" class="btn btn-secondary">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+                <button type="button" id="saveBtn" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Simpan
+                </button>
+                <button type="button" id="printBtn" class="btn btn-success">
+                    <i class="fas fa-print"></i> Cetak
+                </button>
+                <button type="button" id="resetBtn" class="btn btn-danger">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </form>
+
+        <!-- Modal Preview -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Preview Jurnal Bimbingan</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body" id="previewContent">
+                    <!-- Preview content will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="printFromPreview">
+                        <i class="fas fa-print"></i> Cetak
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="closePreview">Tutup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Modal -->
+        <div id="historyModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-history"></i> Riwayat Bimbingan</h2>
+                    <span class="close" id="closeHistory">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="history-controls">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchHistory" placeholder="Cari berdasarkan nama siswa...">
+                        </div>
+                        <button id="clearAllHistory" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i> Hapus Semua
+                        </button>
+                    </div>
+                    <div id="historyList" class="history-list">
+                        <!-- History items will be inserted here -->
+                    </div>
+                    <div id="noHistory" class="no-history" style="display: none;">
+                        <i class="fas fa-inbox"></i>
+                        <h3>Belum Ada Riwayat</h3>
+                        <p>Belum ada data bimbingan yang tersimpan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View History Modal -->
+        <div id="viewHistoryModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-eye"></i> Detail Bimbingan</h2>
+                    <span class="close" id="closeViewHistory">&times;</span>
+                </div>
+                <div class="modal-body" id="viewHistoryContent">
+                    <!-- History detail will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="printHistory">
+                        <i class="fas fa-print"></i> Cetak
+                    </button>
+                    <button type="button" class="btn btn-danger" id="deleteHistory">
+                        <i class="fas fa-trash"></i> Hapus
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="closeViewHistoryBtn">Tutup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Data berhasil disimpan!</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Dibuat oleh Moh Syahrul Mustafa, S.Pi</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
